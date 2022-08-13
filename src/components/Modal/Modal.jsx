@@ -5,9 +5,7 @@ export const Modal = ({image, onClose}) =>{
 
   
   
-    window.addEventListener('keydown', handleKeyDown);
-
-
+  window.addEventListener('keydown', handleKeyDown);
  
   function handleKeyDown (event)  {
     if (event.code === 'Escape') {
@@ -23,12 +21,11 @@ export const Modal = ({image, onClose}) =>{
         }
   };
     return (
-        <div className={styles.overlay} onClick={handleBackdropClick}>
+  <div className={styles.overlay} onClick={handleBackdropClick}>
   <div className={styles.modal} >
     <img src={image.largeImageURL} alt="" />
   </div>
-  
-</div>
+  </div>
     )
 }
 Modal.propTypes = {

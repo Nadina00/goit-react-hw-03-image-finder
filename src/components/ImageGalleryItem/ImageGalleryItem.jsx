@@ -15,17 +15,14 @@ openModal = ()=> {
 closeModal = ()=> {
     this.setState({isModalOpen: false})
 }
-
     render(){
-        const {image} = this.props
-        return(
-           <div>
-            
-            <img src={image.webformatURL} alt="" className={styles.galleryItemImage} onClick={this.openModal}/>
-            {this.state.isModalOpen && <Modal image = {image} onClose={this.closeModal} />}
-            </div>
+    const {image} = this.props
+    return(     
+    <li className={styles.galleryItem}>
+    <img src={image.webformatURL} alt="" className={styles.galleryItemImage} onClick={this.openModal}/>
+    {this.state.isModalOpen && <Modal image = {image} onClose={this.closeModal} />}
+    </li> 
         ) 
-       
-    }}
+          }}
     ImageGalleryItem.propTypes = {
     isModalOpen: PropTypes.bool}

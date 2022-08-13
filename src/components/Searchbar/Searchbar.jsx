@@ -7,25 +7,25 @@ export class Searchbar extends React.Component  {
       imageName: ''
      }
 
-     handleSubmit= evt =>{
-        evt.preventDefault()
-        if(this.state.imageName.trim() === ""){
-            alert ("not name")
-            return
-        }
-        this.props.onSubmit(this.state.imageName)
-        
+handleSubmit= evt =>{
+  evt.preventDefault()
+   if(this.state.imageName.trim() === ""){
+   alert ("not name")
+   return
+   }
+   this.props.onSubmit(this.state.imageName)
      }
-     handleChange = evt => {
-        this.setState({imageName: evt.currentTarget.value.toLowerCase()})
+
+  handleChange = evt => {
+   this.setState({imageName: evt.currentTarget.value.toLowerCase()})
      }
      render(){
         return(
-            <header className={styles.searchbar}>
+  <header className={styles.searchbar}>
   <form className={styles.form} onSubmit={this.handleSubmit}>
-    <button type="submit" className={styles.searchFormButton}>
-      <span className={styles.searchFormButtonLabel}>Search</span>
-    </button>
+  <button type="submit" className={styles.searchFormButton}>
+    <span className={styles.searchFormButtonLabel}>Search</span>
+  </button>
 
     <input
       className={styles.searchFormInput}

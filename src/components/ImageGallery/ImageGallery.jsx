@@ -19,32 +19,25 @@ export class ImageGallery extends React.Component  {
         const prevName = prevProps.imageName
         const nextName = this.props.imageName
     if(prevName !== nextName ){
-    console.log(prevName)
-    console.log(nextName)
-    this.setState({status: 'pending', page: 1})
-    fetchImage(nextName, this.state.page)
-    .then(images => this.setState({ images, status: 'resolved'}))
-    .catch(error => this.setState({status: 'rejected'}))
+        this.setState({status: 'pending', page: 1, image: []})
+        fetchImage(nextName, this.state.page)
+        .then(images => this.setState({ images, status: 'resolved'}))
+        .catch(error => this.setState({status: 'rejected'}))
         }
         if(prevState.page !== this.state.page ){
-            console.log(prevState.page)
-            console.log(this.state.page)
-            this.setState({status: 'pending'})
-            fetchImage(nextName, this.state.page)
-            .then(images => this.setState({ images, status: 'resolved'}))
-            .catch(error => this.setState({status: 'rejected'}))
-    }}
-          
+        this.setState({status: 'pending'})
+        fetchImage(nextName, this.state.page)
+        .then(images => this.setState(prevState => ({ images: [...prevState.images,...images], status: 'resolved'})))
+        .catch(error => this.setState({status: 'rejected'}))
+   }}
+        
     
-
 loreMore = () => {
     this.setState(prevState => ({
         page: prevState.page + 1
     }))
 
 }
-
-     
         
        render(){ 
         const {loader, error, images, status} = this.state
@@ -59,16 +52,12 @@ loreMore = () => {
         return (<div> 
         <ul className={styles.gallery}>
         {images.map(image => (
-        <li className={styles.galleryItem} key={image.id}>
-         <ImageGalleryItem image={image}/>
-         
-         </li>))}  
+    <ImageGalleryItem image={image} key={image.id}/>
+        ))}  
     </ul>
     
     <Button onClick={this.loreMore}>Load more</Button>
-    </div>
-    
-   )
+    </div> )
         }
 }}
 ImageGallery.propTypes = {

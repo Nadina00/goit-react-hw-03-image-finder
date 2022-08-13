@@ -11,25 +11,13 @@ state ={
 
   handleSearchSubmit = imageName =>{
   this.setState({imageName})
-    console.log(imageName)
-}
- 
-
+   }
   render(){
   return (
-    <div className={styles.app}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr',
-        gridGap: '16px',
-        paddingBottom: '24px',
-        
-      }}
-    >
+    <div className={styles.app}>
     <Searchbar onSubmit={this.handleSearchSubmit}/>
     <ImageGallery imageName={this.state.imageName}/>
-    
-    </div>
+     </div>
   );
 };
 }
